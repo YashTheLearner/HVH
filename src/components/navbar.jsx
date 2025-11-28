@@ -2,13 +2,16 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import search from "../assets/search.png";
 import user from "../assets/user.png";
-import cart from "../assets/cart.png";
+import cart from "../assets/cart.png";import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-10 bg-black shadow-md h-24">
   {/* Logo */}
-  <img src={logo} alt="Logo" className="h-full w-auto object-contain" />
+  <Link to="/">
+    <img src={logo} alt="Logo" className="h-40 w-auto object-contain" />
+  </Link>
 
   {/* Menu */}
   <div className="flex space-x-10 text-white font-semibold">

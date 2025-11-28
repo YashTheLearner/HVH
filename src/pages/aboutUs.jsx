@@ -9,12 +9,12 @@ export default function AboutUs() {
           {/* Images */}
           <div className="grid grid-cols-2 gap-3 w-[280px]">
             <img
-              src="https://via.placeholder.com/300x200"
+              src="https://placehold.co/300x200"
               className="rounded-lg object-cover h-[150px]"
               alt=""
             />
             <img
-              src="https://via.placeholder.com/300x200"
+              src="https://placehold.co/300x200"
               className="rounded-lg object-cover h-[150px]"
               alt=""
             />

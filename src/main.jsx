@@ -6,6 +6,7 @@ import Layout from "./Layout.jsx";
 import Home from "./pages/home.jsx";
 import AboutUs from "./pages/aboutUs.jsx";
 import Products from "./pages/products.jsx";
+import ComingSoonHelmet from "./components/commingSoon.jsx";
 
 const router = createBrowserRouter([{ 
   path: "/", 
@@ -18,6 +19,7 @@ const router = createBrowserRouter([{
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ComingSoonHelmet />
+    {/* <RouterProvider router={router} /> */}
   </StrictMode>
 );

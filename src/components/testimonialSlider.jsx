@@ -1,102 +1,82 @@
-import { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const testimonials = [
   {
     name: "Ranbir Gehlot",
     role: "Bike Enthusiast",
-    img: "/images/user1.png",
-    text: `I've always been passionate about bikes, and helmets are an extension of my personality. HVH helmets give me both style and safety. The graphics stand out, and I constantly get compliments from my riding group. What surprised me most is the quality you get at such a fair price.`,
+    img: "/your-image-1.jpg", // 🔴 Replace this
+    text: "I’ve always been passionate about bikes, ... such a fair price"
   },
   {
     name: "Arjun Rao",
     role: "Adventure Rider",
-    img: "/images/user2.png",
-    text: `On my adventure trips, I face rain, dust, and extreme terrains. My HVH helmet has never let me down. It's strong, stylish, and most importantly, safe. The double-layered shell and certified build give me the confidence to ride without fear.`,
+    img: "/your-image-2.jpg", // 🔴 Replace this
+    text: "On my adventure trips, I face rain, dust... ride without fear"
   },
   {
     name: "Rocky Patel",
     role: "Track Racer",
-    img: "/images/user3.png",
-    text: `As a professional racer, I push my bike to its limits, which means I need a helmet that can match that intensity. HVH helmets provide excellent aerodynamic design and uncompromising safety features. During long races, the lightweight build keeps my neck from straining.`,
+    img: "/your-image-3.jpg", // 🔴 Replace this
+    text: "As a professional racer, I push my bike... keeps my neck from straining"
   },
 ];
 
 export default function TestimonialSlider() {
-  const [index, setIndex] = useState(0);
-
-  const prevSlide = () => {
-    setIndex(index === 0 ? testimonials.length - 1 : index - 1);
-  };
-
-  const nextSlide = () => {
-    setIndex(index === testimonials.length - 1 ? 0 : index + 1);
-  };
-
   return (
-    <div className="w-full bg-[#1d1d1d] text-white py-20">
-      <div className="max-w-5xl mx-auto px-6 relative">
+    <div className="w-full bg-[#181818] py-16 text-white">
+      <h2 className="text-center text-3xl font-semibold mb-8">
+        What Our Clients Say About Us
+      </h2>
 
-        {/* Header & Arrows */}
-        <div className="flex justify-between items-center mb-10">
-          <button onClick={prevSlide} className="text-red-500 text-xl">
-            <FaChevronLeft />
-          </button>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        navigation
+        pagination={{ clickable: true }}
+        spaceBetween={50}
+        slidesPerView={1}
+        loop
+        breakpoints={{
+          1024: { slidesPerView: 3 },
+          768: { slidesPerView: 2 },
+        }}
+        className="px-10"
+      >
+        {testimonials.map((t, i) => (
+          <SwiperSlide key={i}>
+            <div className="relative bg-[#111] p-8 rounded-3xl mx-auto max-w-[380px]
+              shadow-[0px_0px_40px_rgba(255,255,255,0.15)] 
+              border border-gray-700">
 
-          <h2 className="text-3xl md:text-4xl font-semibold">
-            What Our Clients Say About Us
-          </h2>
-
-          <button onClick={nextSlide} className="text-red-500 text-xl">
-            <FaChevronRight />
-          </button>
-        </div>
-
-        {/* Slider */}
-        <div className="relative overflow-hidden">
-          <div
-            className="flex transition-transform duration-500"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {testimonials.map((item, i) => (
-              <div key={i} className="w-full flex-shrink-0 flex justify-center">
-                <div className="max-w-lg bg-black rounded-3xl p-8 relative shadow-lg 
-                                border border-gray-800">
-                  
-                  {/* Image above card */}
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2">
-                    <img
-                      src={item.img}
-                      alt={item.name}
-                      className="w-20 h-20 rounded-full border-4 border-gray-700 object-cover"
-                    />
-                  </div>
-
-                  <div className="mt-10 text-center">
-                    <h3 className="text-xl font-semibold">{item.name}</h3>
-                    <p className="text-sm text-gray-400 mb-4">{item.role}</p>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      {item.text}
-                    </p>
-                  </div>
-                </div>
+              {/* avatar */}
+              <div className="w-20 h-20 mx-auto -mt-14">
+                <img
+                  src={t.img}
+                  alt={t.name}
+                  className="w-full h-full rounded-full object-cover border-4 border-[#181818]"
+                />
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center mt-6 space-x-2">
-          {testimonials.map((_, i) => (
-            <span
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full cursor-pointer transition-all 
-                ${index === i ? "bg-red-500" : "bg-white/40"}`}
-            />
-          ))}
-        </div>
-      </div>
+              <h3 className="text-xl font-semibold text-center mt-2">{t.name}</h3>
+              <p className="text-sm text-center opacity-80">{t.role}</p>
+
+              {/* quote icon */}
+              <div className="text-center text-red-500 text-3xl mt-2">❝</div>
+
+              {/* description */}
+              <p className="text-center text-sm opacity-90 mt-3 leading-relaxed">
+                {t.text}
+              </p>
+
+              {/* red shape behind card */}
+              <div className="absolute -bottom-4 -right-4 w-[85%] h-[85%] bg-red-600 rounded-3xl -z-10"></div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }

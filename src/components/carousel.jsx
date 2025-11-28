@@ -18,20 +18,22 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-xl">
-      {/* Slides */}
-      <div
-        className="flex transition-transform duration-700"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-      >
-        {slides.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            className="w-full object-cover h-64 md:h-96"
-          />
-        ))}
-      </div>
+    <div className="relative w-full h-screen overflow-hidden">
+
+  {/* Slides */}
+  <div
+    className="flex w-full h-full transition-transform duration-700"
+    style={{ transform: `translateX(-${current * 100}vw)` }}
+  >
+    {slides.map((src, index) => (
+      <img
+        key={index}
+        src={src}
+        className="w-screen h-screen object-cover"
+      />
+    ))}
+  </div>
+
 
       {/* Left Button */}
       <button
